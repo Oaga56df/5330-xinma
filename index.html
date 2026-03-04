@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malaysia Profile - 个人简介</title>
-    <!-- Meta Pixel Code - Facebook像素统计代码 -->
+    <!-- Meta Pixel Code - Facebook像素统计代码（完整集成） -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -219,7 +219,7 @@
                 class="profile-avatar"
                 onerror="this.onerror=null; this.src='https://picsum.photos/id/29/300/300';"
             >
-            <!-- WhatsApp跳转按钮 - 绑定Pixel点击事件 -->
+            <!-- WhatsApp跳转按钮 - 绑定Pixel点击事件 + 正确号码 -->
             <a href="https://wa.me/60189157497?text=您好，我想认识一下您" 
                class="whatsapp-btn" 
                target="_blank" 
@@ -279,11 +279,10 @@
         </div>
     </div>
 
-    <!-- Pixel事件追踪函数 -->
+    <!-- Pixel事件追踪函数 - 独立封装，代码更整洁 -->
     <script>
-        // 定义WhatsApp点击追踪函数
         function trackWhatsAppClick() {
-            // 触发Facebook Pixel的Contact事件（符合官方推荐的事件类型）
+            // 触发Facebook Pixel的Contact事件（官方推荐）
             fbq('track', 'Contact', {
                 content_name: 'WhatsApp联系按钮点击',
                 content_type: '用户互动',
@@ -291,8 +290,8 @@
                 currency: 'MYR',
                 value: 0
             });
-            // 可选：控制台打印，方便测试
-            console.log('WhatsApp按钮点击事件已触发，Pixel统计完成');
+            // 控制台日志，方便测试验证
+            console.log('✅ WhatsApp按钮点击事件已触发，Pixel统计完成');
         }
     </script>
 </body>
