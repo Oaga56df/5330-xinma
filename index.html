@@ -77,10 +77,10 @@
             font-size: 20px;
         }
 
-        /* WhatsApp按钮样式 - 调整bottom值让按钮往下移 + 添加id用于事件监听 */
-        .whatsapp-btn {
+        /* WhatsApp按钮样式 - 保留原有样式 + 匹配id=contactButton */
+        #contactButton {
             position: absolute;
-            bottom: -15px; /* 从-35px改为-15px，按钮向下移动20px */
+            bottom: -15px;
             right: 40px;
             background-color: #25D366; /* WhatsApp品牌绿 */
             color: white;
@@ -99,18 +99,18 @@
             z-index: 10;
         }
 
-        .whatsapp-btn:hover {
+        #contactButton:hover {
             background-color: #128C7E;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
         }
 
-        .whatsapp-btn:active {
+        #contactButton:active {
             transform: translateY(-1px);
             box-shadow: 0 4px 10px rgba(37, 211, 102, 0.25);
         }
 
-        .whatsapp-btn svg {
+        #contactButton svg {
             width: 20px;
             height: 20px;
             fill: white;
@@ -196,10 +196,10 @@
 
         /* 响应式适配 - 手机端调整按钮位置 */
         @media (max-width: 500px) {
-            .whatsapp-btn {
+            #contactButton {
                 left: 40px;
                 right: 40px;
-                bottom: -70px; /* 手机端同步往下调整 */
+                bottom: -70px;
                 width: calc(100% - 80px);
                 justify-content: center;
             }
@@ -212,17 +212,16 @@
         <div class="profile-banner">
             <!-- 马来西亚特色标识 -->
             <div class="my-badge">🇲🇾 Malaysia</div>
-            <!-- 替换为稳定的公共女性头像链接，同时更新alt文本 -->
+            <!-- 头像 -->
             <img 
                 src="https://picsum.photos/id/64/300/300" 
                 alt="Amelia Wong 头像" 
                 class="profile-avatar"
                 onerror="this.onerror=null; this.src='https://picsum.photos/id/29/300/300';"
             >
-            <!-- WhatsApp跳转按钮 - 添加id="contactButton"用于事件监听 -->
-            <a href="https://wa.me/60189157497?text=您好，我想认识一下您" 
-               id="contactButton"  <!-- 核心：添加id用于事件监听 -->
-               class="whatsapp-btn" 
+            <!-- 联系按钮 - 严格匹配id=contactButton，保留WhatsApp跳转功能 -->
+            <a id="contactButton" 
+               href="https://wa.me/60189157497?text=您好，我想认识一下您" 
                target="_blank" 
                rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24">
@@ -279,29 +278,20 @@
         </div>
     </div>
 
-    <!-- 核心：事件监听器绑定Pixel事件 -->
+    <!-- 严格匹配你提供的事件监听代码格式，填充Pixel事件代码 -->
     <script type="text/javascript">
-        // 等待页面加载完成后再绑定事件（避免元素未加载导致的错误）
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取联系按钮元素
-            const contactButton = document.getElementById('contactButton');
-            
-            // 绑定点击事件监听器
-            contactButton.addEventListener('click', function() {
-                // === 插入的Pixel事件代码 ===
-                fbq('track', 'Contact', {
-                    content_name: 'WhatsApp联系按钮点击',
-                    content_type: '用户互动',
-                    medium: 'WhatsApp',
-                    currency: 'MYR',
-                    value: 0
-                });
-                // === 事件代码结束 ===
-
-                // 可选：控制台打印，方便测试验证
-                console.log('✅ WhatsApp按钮点击事件已触发（事件监听器版），Pixel统计完成');
-            }, false);
+    document.getElementById('contactButton').addEventListener('click', function() {
+        // 替换 insert_event_code_here 的核心Pixel事件代码
+        fbq('track', 'Contact', {
+            content_name: 'WhatsApp联系按钮点击',
+            content_type: '用户互动',
+            medium: 'WhatsApp',
+            currency: 'MYR',
+            value: 0
         });
+        // 可选：测试日志，可保留/删除
+        console.log('✅ WhatsApp按钮点击事件已触发，Pixel统计完成');
+    }, false);
     </script>
 </body>
 </html>
