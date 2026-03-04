@@ -219,9 +219,9 @@
                 class="profile-avatar"
                 onerror="this.onerror=null; this.src='https://picsum.photos/id/29/300/300';"
             >
-            <!-- 联系按钮 - 严格匹配id=contactButton，保留WhatsApp跳转功能 -->
+            <!-- 联系按钮 - 整合自动发送的问候语（URL编码） -->
             <a id="contactButton" 
-               href="https://wa.me/60189157497?text=您好，我想认识一下您" 
+               href="https://wa.me/60189157497?text=嗨，有幸能够成为你的朋友，你要小心啰，因为我话还蛮多的啦☺️" 
                target="_blank" 
                rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24">
@@ -278,10 +278,10 @@
         </div>
     </div>
 
-    <!-- 严格匹配你提供的事件监听代码格式，填充Pixel事件代码 -->
+    <!-- 事件监听代码 - 触发Pixel统计 -->
     <script type="text/javascript">
     document.getElementById('contactButton').addEventListener('click', function() {
-        // 替换 insert_event_code_here 的核心Pixel事件代码
+        // Pixel事件代码
         fbq('track', 'Contact', {
             content_name: 'WhatsApp联系按钮点击',
             content_type: '用户互动',
@@ -289,7 +289,7 @@
             currency: 'MYR',
             value: 0
         });
-        // 可选：测试日志，可保留/删除
+        // 测试日志
         console.log('✅ WhatsApp按钮点击事件已触发，Pixel统计完成');
     }, false);
     </script>
